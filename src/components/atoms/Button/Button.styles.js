@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
   border-radius: 50px;
   border: none;
   color: white;
+  cursor: pointer;
 `;
 
 export const StyledIcon = styled.span`
