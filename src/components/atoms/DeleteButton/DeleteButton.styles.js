@@ -8,6 +8,8 @@ export const StyledButton = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  position: absolute;
+  right: 0;
 `;
 
 export const StyledIcon = styled.span`
