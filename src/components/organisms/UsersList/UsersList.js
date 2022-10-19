@@ -1,17 +1,17 @@
 import React from 'react';
 import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
 import PropTypes from 'prop-types';
-import { Wrapper, StyledList } from './UsersList.styles';
+import { Wrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
 
 const UsersList = ({ users, deleteUser }) => {
   return (
     <>
       <Wrapper>
-        <StyledList>
+        <ul>
           {users.map((userData) => (
             <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
           ))}
-        </StyledList>
+        </ul>
       </Wrapper>
     </>
   );
