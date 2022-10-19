@@ -18,6 +18,7 @@ function UsersListItem({ deleteUser, userData: { average, name, attendance = '0%
 }
 
 UsersListItem.propTypes = {
+  deleteUser: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     average: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

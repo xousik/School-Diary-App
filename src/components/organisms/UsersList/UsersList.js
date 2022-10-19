@@ -1,5 +1,6 @@
 import React from 'react';
 import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
+import PropTypes from 'prop-types';
 import { Wrapper, StyledList } from './UsersList.styles';
 
 const UsersList = ({ users, deleteUser }) => {
@@ -14,6 +15,11 @@ const UsersList = ({ users, deleteUser }) => {
       </Wrapper>
     </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UsersList;

@@ -7,6 +7,7 @@ import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import Form from 'components/organisms/Form/Form';
 import { users as usersData } from 'data/users';
+import NavBar from 'components/organisms/NavBar/NavBar';
 
 const initialFormInputState = {
   name: '',
@@ -46,10 +47,7 @@ function Root(props) {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrapper>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/add-user">Add user</Link>
-          </nav>
+          <NavBar Link={Link} />
           <Routes>
             <Route path="/" element={<UsersList deleteUser={deleteUser} users={users} />} />
             <Route path="/add-user" element={<Form handleChange={handleChange} handleAddUser={handleAddUser} formInput={formInput} />} />

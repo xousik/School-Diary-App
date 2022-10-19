@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'components/atoms/Button/Button';
 import { Wrapper, StyledList, StyledTitle } from 'components/organisms/UsersList/UsersList.styles';
 import FormField from 'components/moleculs/FormField/FormField';
@@ -17,6 +18,12 @@ const Form = ({ handleAddUser, formInput, handleChange }) => {
       </Wrapper>
     </>
   );
+};
+
+Form.propTypes = {
+  handleAddUser: PropTypes.func.isRequired,
+  formInput: PropTypes.objectOf(PropTypes.string).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Form;
