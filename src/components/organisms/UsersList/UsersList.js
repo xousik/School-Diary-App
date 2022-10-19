@@ -1,48 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { users as usersData } from 'data/users';
 import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
-import { Wrapper, StyledList } from './UsersList.styles';
+import { Button } from 'components/atoms/Button/Button';
+import { Wrapper, StyledList, StyledTitle } from './UsersList.styles';
+import FormField from 'components/moleculs/FormField/FormField';
 
-const mockAPI = (success) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (usersData) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
+const initialFormInputState = {
+  name: '',
+  attendance: '',
+  average: '',
 };
 
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setLoading] = useState(null);
-
-  useEffect(() => {
-    setLoading(true);
-    mockAPI()
-      .then((data) => {
-        setLoading(false);
-        setUsers(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const [users, setUsers] = useState(usersData);
+  const [formInput, setFormInput] = useState(initialFormInputState);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);
     setUsers(filteredUsers);
   };
 
+  const handleChange = (e) => {
+    setFormInput({
+      ...formInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name: formInput.name,
+      attendance: formInput.attendance,
+      average: formInput.average,
+    };
+    setUsers([newUser, ...users]);
+    setFormInput(initialFormInputState);
+  };
+
   return (
-    <Wrapper>
-      <h1>{isLoading ? 'Loading...' : 'Users List'}</h1>
-      <StyledList>
-        {users.map((userData) => (
-          <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
-        ))}
-      </StyledList>
-    </Wrapper>
+    <>
+      <Wrapper as="form" onSubmit={handleAddUser}>
+        <StyledList>
+          <StyledTitle>Add new student</StyledTitle>
+          <FormField label="Name" id="name" name="name" value={formInput.name} onChange={handleChange} />
+          <FormField label="Attendance" id="attendance" name="attendance" value={formInput.attendance} onChange={handleChange} />
+          <FormField label="Average" id="average" name="average" value={formInput.average} onChange={handleChange} />
+          <Button type="submit">Add</Button>
+        </StyledList>
+      </Wrapper>
+      <Wrapper>
+        <StyledList>
+          {users.map((userData) => (
+            <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
+          ))}
+        </StyledList>
+      </Wrapper>
+    </>
   );
 };
 
