@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/atoms/Button/Button';
-import { StyledTitle } from 'components/atoms/ViewTitle/ViewTitle';
+import { StyledTitle } from 'components/atoms/Title/Title';
 import FormField from 'components/moleculs/FormField/FormField';
 import { Wrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
 
