@@ -1,61 +1,32 @@
-import React, { useState } from 'react';
-import UsersList from 'components/organisms/UsersList/UsersList';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
-import Form from 'components/organisms/Form/Form';
-import { users as usersData } from 'data/users';
-import NavBar from 'components/organisms/NavBar/NavBar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainTemplate from 'components/Templates/MainTemplate/MainTemplate';
+import AddUser from 'views/AddUser';
+import Dashboard from 'views/DashBoard';
+import UsersProvider from 'providers/UsersProvider';
 
-const initialFormInputState = {
-  name: '',
-  attendance: '',
-  average: '',
-};
-
-function Root(props) {
-  const [users, setUsers] = useState(usersData);
-  const [formInput, setFormInput] = useState(initialFormInputState);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
-  const handleChange = (e) => {
-    setFormInput({
-      ...formInput,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleAddUser = (e) => {
-    e.preventDefault();
-    const newUser = {
-      name: formInput.name,
-      attendance: formInput.attendance,
-      average: formInput.average,
-    };
-    setUsers([newUser, ...users]);
-    setFormInput(initialFormInputState);
-  };
-
+const Root = () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Wrapper>
-          <NavBar Link={Link} />
-          <Routes>
-            <Route path="/" element={<UsersList deleteUser={deleteUser} users={users} />} />
-            <Route path="/add-user" element={<Form handleChange={handleChange} handleAddUser={handleAddUser} formInput={formInput} />} />
-          </Routes>
-        </Wrapper>
+        <MainTemplate>
+          <UsersProvider>
+            <Wrapper>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/add-user" element={<AddUser />} />
+              </Routes>
+            </Wrapper>
+          </UsersProvider>
+        </MainTemplate>
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default Root;

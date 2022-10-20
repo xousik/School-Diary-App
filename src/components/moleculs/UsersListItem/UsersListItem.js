@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
-import { Wrapper, NameInfoWrapper } from './UsersListItem.styles';
-import { Grade } from 'components/atoms/Grade/Grade';
+import { Wrapper, NameInfoWrapper, StyledAverage } from './UsersListItem.styles';
+import { UsersContext } from 'providers/UsersProvider';
 
-function UsersListItem({ deleteUser, userData: { average, name, attendance = '0%' } }) {
+const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+  const { deleteUser } = useContext(UsersContext);
+
   return (
     <Wrapper>
-      <Grade value={average}>{average}</Grade>
+      <StyledAverage value={average}>{average}</StyledAverage>
       <NameInfoWrapper>
-        <p>{name}</p>
+        <p>
+          {name}
+          <DeleteButton onClick={() => deleteUser(name)} />
+        </p>
         <p>attendance: {attendance}</p>
       </NameInfoWrapper>
-      <DeleteButton onClick={() => deleteUser(name)} />
     </Wrapper>
   );
-}
+};
 
 UsersListItem.propTypes = {
   deleteUser: PropTypes.func.isRequired,
