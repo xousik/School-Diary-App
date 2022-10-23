@@ -4,7 +4,7 @@ import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainTemplate from 'components/Templates/MainTemplate/MainTemplate';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import AddUser from 'views/AddUser';
 import Dashboard from 'views/DashBoard';
 import UsersProvider from 'providers/UsersProvider';

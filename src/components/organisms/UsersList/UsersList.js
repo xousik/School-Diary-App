@@ -19,7 +19,6 @@ const UsersList = ({ users }) => {
 
 UsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
-  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UsersList;

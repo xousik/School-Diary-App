@@ -18,18 +18,17 @@ const FormField = ({ onChange, value, label, name, id, type = 'text', ...props }
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
-      <Input name={name} id={id} type={type} value={value} onChange={onChange} />
+      <Input name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} />
     </Wrapper>
   );
 };
 
 FormField.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default FormField;
