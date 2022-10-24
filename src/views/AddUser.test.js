@@ -16,6 +16,6 @@ describe('Add User', () => {
     fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '50%' } });
     fireEvent.change(screen.getByTestId('Average'), { target: { value: '4.1' } });
     fireEvent.click(screen.getByText('Add'));
-    screen.getByText('Wojtek');
+    screen.getByDisplayValue('Wojtek');
   });
 });
