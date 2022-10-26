@@ -12,7 +12,7 @@ const data = [
   },
   {
     title: 'New students at school',
-    category: 'Tech news',
+    category: 'Students News',
     content: 'Recusandae illo perspiciatis illo ea eligendi est et rerum sdfjkhasd asdjhfkasjdf ajsdfhjkasdhf askdjfhasjkdfh aksjdfh jka.',
     image: 'https://unsplash.it/400/300',
   },
