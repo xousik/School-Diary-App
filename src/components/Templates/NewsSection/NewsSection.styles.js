@@ -5,17 +5,21 @@ export const Wrapper = styled.div`
   grid-row: 1/3;
   grid-column: 3/3;
   border-left: 1px solid ${({ theme }) => theme.colors.darkPurple};
-  padding: 50px;
+  padding: 50px 25px;
   overflow-y: scroll;
 `;
 
 export const NewsSectionHeader = styled.h3`
   margin-right: auto;
+  :nth-child(2) {
+    margin-top: 30px;
+  }
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.xxl};
 `;
 
 export const ArticleWrapper = styled(ViewWrapper)`
+  padding: 20px;
   margin: 30px 0;
   width: 100%;
   max-width: unset;
@@ -43,9 +47,15 @@ export const TitleWrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   column-gap: 25px;
+  margin-top: 20px;
+
+  p {
+    margin: 0;
+  }
 
   img {
     max-width: 200px;
+    max-height: 300px;
     object-fit: cover;
     border-radius: 10px;
   }
