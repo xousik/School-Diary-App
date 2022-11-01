@@ -11,6 +11,9 @@ export const Wrapper = styled.div`
 
 export const NewsSectionHeader = styled.h3`
   margin-right: auto;
+  :nth-child(2) {
+    margin-top: 30px;
+  }
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.xxl};
 `;
@@ -52,6 +55,7 @@ export const ContentWrapper = styled.div`
 
   img {
     max-width: 200px;
+    max-height: 300px;
     object-fit: cover;
     border-radius: 10px;
   }
