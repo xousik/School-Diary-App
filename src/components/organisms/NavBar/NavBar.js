@@ -11,7 +11,7 @@ const NavBar = () => {
           Buddy
         </h1>
       </NavLogo>
-      <StyledLink end to="/">
+      <StyledLink end to="/group">
         Dashboard
       </StyledLink>
       <StyledLink to="/add-user">Add Student</StyledLink>

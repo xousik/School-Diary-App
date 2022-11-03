@@ -4,7 +4,7 @@ import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
 import { StyledList } from './UsersList.styles';
 import { Title } from 'components/atoms/Title/Title';
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <>
       <Title>Students list</Title>
@@ -18,7 +18,7 @@ const UsersList = ({ users }) => {
 };
 
 UsersList.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
 };
 
 export default UsersList;

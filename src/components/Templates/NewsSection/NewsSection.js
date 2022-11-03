@@ -35,15 +35,17 @@ export const NewsSection = () => {
       .then(({ data: { data } }) => {
         setArticles(data.allArticles);
       })
-      .catch(() => setError(`Sorry, we couldn't load articles for you`));
+      .catch(() => {
+        setError(`Sorry, we couldn't load articles for you`);
+      });
   }, []);
 
   return (
     <Wrapper>
       <NewsSectionHeader>News feed section</NewsSectionHeader>
       {articles.length > 0 ? (
-        articles.map(({ title, category, content, image = null }) => (
-          <ArticleWrapper key={title}>
+        articles.map(({ id, title, category, content, image = null }) => (
+          <ArticleWrapper key={id}>
             <TitleWrapper>
               <h3>{title}</h3>
               <p>{category}</p>
