@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
-import { StyledList } from './UsersList.styles';
+import { StyledList } from './StudentsList.styles';
 import { Title } from 'components/atoms/Title/Title';
+import { useStudents } from 'hooks/useStudents';
 
-const UsersList = ({ users = [] }) => {
+const StudentsList = () => {
+  const { students } = useStudents();
+
   return (
     <>
       <Title>Students list</Title>
       <StyledList>
-        {users.map((userData) => (
+        {students.map((userData) => (
           <UsersListItem key={userData.name} userData={userData} />
         ))}
       </StyledList>
@@ -17,8 +20,8 @@ const UsersList = ({ users = [] }) => {
   );
 };
 
-UsersList.propTypes = {
+StudentsList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
 };
 
-export default UsersList;
+export default StudentsList;
