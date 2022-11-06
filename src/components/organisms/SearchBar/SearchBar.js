@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { SearchBarWrapper, StatusInfo, SearchWrapper, SearchResults } from './SearchBar.styles';
+import { SearchBarWrapper, StatusInfo, SearchWrapper, SearchResults, SearchResultsItem } from './SearchBar.styles';
 import { Input } from 'components/atoms/Input/Input';
 import { useStudents } from 'hooks/useStudents';
 
 export const SearchBar = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
   const { findStudents, matchingStudents } = useStudents();
-
-  console.log(matchingStudents);
 
   useEffect(() => {
     if (!searchPhrase) return;
@@ -24,10 +22,10 @@ export const SearchBar = () => {
       </StatusInfo>
       <SearchWrapper>
         <Input autoComplete="off" onChange={(e) => setSearchPhrase(e.target.value)} value={searchPhrase} name="Search" />
-        {searchPhrase && matchingStudents ? (
+        {searchPhrase && matchingStudents.length ? (
           <SearchResults isVisible>
             {matchingStudents.map((student) => (
-              <li key={student.name}>{student.name}</li>
+              <SearchResultsItem key={student.name}>{student.name}</SearchResultsItem>
             ))}
           </SearchResults>
         ) : null}
