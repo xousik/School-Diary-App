@@ -34,7 +34,7 @@ export const SearchWrapper = styled.div`
 
 export const SearchResults = styled.ul`
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-  z-index: 1000;
+  z-index: 9999;
   max-height: 500px;
   overflow-y: scroll;
   padding: 10px;
@@ -43,22 +43,22 @@ export const SearchResults = styled.ul`
   width: 100%;
   position: absolute;
   left: 0;
-  top: 30px;
+  top: 40px;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.grey};
 `;
 
 export const SearchResultsItem = styled.li`
+  cursor: pointer;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkGrey};
   background-color: ${({ theme, isHighlighted }) => (isHighlighted ? theme.colors.lightPurple : theme.colors.white)};
+  border-radius: 15px;
   width: 100%;
-  padding: 20px 5px;
+  padding: 15px 5px;
+  margin: 5px 0;
   &:hover {
     background-color: ${({ theme }) => theme.colors.lightPurple};
-  }
-  &:not(:last-child) {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
   }
 `;

@@ -13,7 +13,6 @@ export const handlers = [
   }),
   rest.post('/students/search', (req, res, ctx) => {
     const matchingStudents = req.body.data ? students.filter((student) => student.name.toLowerCase().includes(req.body.data.toLowerCase())) : [];
-    console.log(matchingStudents);
     return res(
       ctx.status(200),
       ctx.json({
