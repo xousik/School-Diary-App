@@ -5,21 +5,14 @@ import { useStudents } from 'hooks/useStudents';
 
 export const SearchBar = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
-  const [matchingStudents, setMatchingStudents] = useState('');
-  const { findStudents } = useStudents();
+  const { findStudents, matchingStudents } = useStudents();
 
-  const getMatchingStudents = () => {
-    const students = findStudents(searchPhrase);
-    setMatchingStudents(students);
-    console.log(`studenci: ${students}`);
-  };
-
-  findStudents(searchPhrase);
+  console.log(matchingStudents);
 
   useEffect(() => {
     if (!searchPhrase) return;
-    getMatchingStudents(searchPhrase);
-  }, [searchPhrase, getMatchingStudents]);
+    findStudents(searchPhrase);
+  }, [searchPhrase]);
 
   return (
     <SearchBarWrapper>
@@ -30,11 +23,11 @@ export const SearchBar = () => {
         </p>
       </StatusInfo>
       <SearchWrapper>
-        <Input onChange={(e) => setSearchPhrase(e.target.value)} value={searchPhrase} name="Search" />
+        <Input autoComplete="off" onChange={(e) => setSearchPhrase(e.target.value)} value={searchPhrase} name="Search" />
         {searchPhrase && matchingStudents ? (
-          <SearchResults>
+          <SearchResults isVisible>
             {matchingStudents.map((student) => (
-              <li key={student.id}>{student.name}</li>
+              <li key={student.name}>{student.name}</li>
             ))}
           </SearchResults>
         ) : null}

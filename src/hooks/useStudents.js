@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 export const useStudents = () => {
   const [students, setStudents] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [matchingStudents, setMatchingStudents] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,20 +23,18 @@ export const useStudents = () => {
   }, [id, groups]);
 
   const findStudents = (searchPhrase) => {
-    try {
-      const { data } = axios.post(`/students/search`, {
+    axios
+      .post(`/students/search`, {
         data: searchPhrase,
-      });
-      console.log(`to sa dane: ${data}`);
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
+      })
+      .then(({ data }) => setMatchingStudents(data.students))
+      .catch((err) => console.log(err));
   };
 
   return {
     students,
     groups,
     findStudents,
+    matchingStudents,
   };
 };
