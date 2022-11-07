@@ -53,7 +53,7 @@ export const SearchResultsItem = styled.li`
   cursor: pointer;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkGrey};
-  background-color: ${({ theme, isHighlighted }) => (isHighlighted ? theme.colors.lightPurple : theme.colors.white)};
+  background-color: ${({ theme, isHighlighted }) => (isHighlighted ? theme.colors.black : theme.colors.white)};
   border-radius: 15px;
   width: 100%;
   padding: 15px 5px;
