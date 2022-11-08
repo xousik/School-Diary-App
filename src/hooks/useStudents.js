@@ -1,39 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 export const useStudents = () => {
-  const [students, setStudents] = useState([]);
-  const [groups, setGroups] = useState([]);
   const [matchingStudents, setMatchingStudents] = useState([]);
-  const { id } = useParams();
 
-  useEffect(() => {
-    axios
-      .get('/groups')
-      .then(({ data }) => setGroups(data.groups))
-      .catch((err) => console.log(err));
+  const getGroups = useCallback(async () => {
+    try {
+      const result = await axios.get('/groups');
+      return result.data.groups;
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`/students/${id}`)
-      .then(({ data }) => setStudents(data.students))
-      .catch((err) => console.log(err));
-  }, [id, groups]);
+  const getStudents = useCallback(async (groupId) => {
+    try {
+      const result = await axios.get(`/students/${groupId}`);
+      return result.data.students;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
-  const findStudents = (searchPhrase) => {
+  const findStudents = ({ inputValue }) => {
+    // console.log(`input value: ${inputValue}`);
     axios
       .post(`/students/search`, {
-        data: searchPhrase,
+        data: inputValue,
       })
       .then(({ data }) => setMatchingStudents(data.students))
       .catch((err) => console.log(err));
   };
 
   return {
-    students,
-    groups,
+    getStudents,
+    getGroups,
     findStudents,
     matchingStudents,
   };
