@@ -5,11 +5,14 @@ import { useStudents } from 'hooks/useStudents';
 import { Wrapper, TitleWrapper, GroupWrapper } from './DashBoard.styles';
 import { Title } from 'components/atoms/Title/Title';
 import { useParams } from 'react-router-dom';
+import useModal from 'components/organisms/Modal/useModal';
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
+  const [currentStudent, setCurrentStudent] = useState();
   const { getGroups } = useStudents();
   const { id } = useParams();
+  const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
 
   useEffect(() => {
     (async () => {
@@ -17,6 +20,11 @@ const Dashboard = () => {
       setGroups(groups);
     })();
   }, [getGroups]);
+
+  const handleOpenStudentDetails = (id) => {
+    setCurrentStudent(id);
+    console.log(currentStudent);
+  };
 
   return (
     <Wrapper>
@@ -31,7 +39,8 @@ const Dashboard = () => {
         </nav>
       </TitleWrapper>
       <GroupWrapper>
-        <StudentsList />
+        <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
+        {isOpen ? <Modal handleClose={handleCloseModal}>{currentStudent}</Modal> : null}
       </GroupWrapper>
     </Wrapper>
   );

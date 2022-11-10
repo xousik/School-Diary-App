@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import UsersListItem from 'components/moleculs/UsersListItem/UsersListItem';
+import StudentsListItem from 'components/moleculs/StudentsLIstItem/StudentsListItem';
 import { StyledList } from './StudentsList.styles';
 import { Title } from 'components/atoms/Title/Title';
 import { useStudents } from 'hooks/useStudents';
 import { useParams } from 'react-router-dom';
 
-const StudentsList = () => {
+const StudentsList = ({ handleOpenStudentDetails }) => {
   const [students, setStudents] = useState([]);
   const { getStudents } = useStudents();
   const { id } = useParams();
@@ -23,7 +23,7 @@ const StudentsList = () => {
       <Title>Students list</Title>
       <StyledList>
         {students.map((userData) => (
-          <UsersListItem key={userData.name} userData={userData} />
+          <StudentsListItem onClick={() => handleOpenStudentDetails(userData.id)} key={userData.name} userData={userData} />
         ))}
       </StyledList>
     </>
