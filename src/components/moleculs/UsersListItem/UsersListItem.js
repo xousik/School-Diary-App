@@ -4,11 +4,11 @@ import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import { Wrapper, NameInfoWrapper, StyledAverage } from './UsersListItem.styles';
 import { UsersContext } from 'providers/UsersProvider';
 
-const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+const UsersListItem = ({ userData: { average, name, attendance = '0%' }, ...props }) => {
   const { deleteUser } = useContext(UsersContext);
 
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <StyledAverage value={average}>{average}</StyledAverage>
       <NameInfoWrapper>
         <p>
