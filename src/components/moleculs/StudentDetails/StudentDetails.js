@@ -1,15 +1,30 @@
-import { Title } from 'components/atoms/Title/Title';
+import { StyledWrapper, Average, StyledTitle, StyledList, StyledListItem, CourseInfo, Heading } from './StudentDetails.styles';
 import { StyledAverage } from '../UsersListItem/UsersListItem.styles';
-import { StyledWrapper } from './StudentDetails.styles';
 
 const StudentDetails = ({ currentStudent }) => {
   return (
     <StyledWrapper>
-      <Title>
-        {currentStudent.name} | Group {currentStudent.group}
-      </Title>
-      <p>Attendance: {currentStudent.attendance}</p>
-      <StyledAverage value={currentStudent.average}>{currentStudent.average}</StyledAverage>
+      <Average value={currentStudent.average}>{currentStudent.average}</Average>
+      <StyledTitle>{currentStudent.name}</StyledTitle>
+      <CourseInfo>
+        <Heading>Course:</Heading>
+        <p>Economy and finances</p>
+      </CourseInfo>
+      <Heading>Average grades:</Heading>
+      <StyledList>
+        <StyledListItem>
+          {currentStudent.grades[0].subject}{' '}
+          <StyledAverage value={currentStudent.grades[0].average}>{currentStudent.grades[0].average}</StyledAverage>
+        </StyledListItem>
+        <StyledListItem>
+          {currentStudent.grades[1].subject}{' '}
+          <StyledAverage value={currentStudent.grades[1].average}>{currentStudent.grades[1].average}</StyledAverage>
+        </StyledListItem>
+        <StyledListItem>
+          {currentStudent.grades[2].subject}{' '}
+          <StyledAverage value={currentStudent.grades[2].average}>{currentStudent.grades[2].average}</StyledAverage>
+        </StyledListItem>
+      </StyledList>
     </StyledWrapper>
   );
 };

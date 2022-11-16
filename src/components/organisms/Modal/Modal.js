@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'components/atoms/Button/Button';
+import ReactModal from 'react-modal';
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled(ReactModal)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -18,26 +18,18 @@ const ModalWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 30px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-const modalContainer = document.getElementById('modal-container');
-
-const Modal = ({ handleCloseModal, children }) => {
-  const modalNode = document.createElement('div');
-
-  useEffect(() => {
-    modalContainer.appendChild(modalNode);
-    return () => {
-      modalContainer.removeChild(modalNode);
-    };
-  }, [modalNode]);
-
-  return ReactDOM.createPortal(
-    <ModalWrapper>
+const Modal = ({ handleClose, children, isOpen }) => {
+  return (
+    <ModalWrapper appElement={document.getElementById('modal-container')} isOpen={isOpen} onRequestClose={handleClose}>
       {children}
-      <Button onClick={handleCloseModal}>Close Modal</Button>
-    </ModalWrapper>,
-    modalContainer
+      <Button onClick={handleClose}>Close Modal</Button>
+    </ModalWrapper>
   );
 };
 

@@ -23,7 +23,7 @@ const UsersListItem = ({ userData: { average, name, attendance = '0%' }, ...prop
 
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
-    average: PropTypes.string.isRequired,
+    average: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     attendance: PropTypes.string,
   }),
