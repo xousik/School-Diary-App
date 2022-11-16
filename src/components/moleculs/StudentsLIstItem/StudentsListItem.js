@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
-import { Wrapper, NameInfoWrapper, StyledAverage } from './UsersListItem.styles';
+import { Wrapper, NameInfoWrapper, StyledAverage } from './StudentsListItem.styles';
 import { UsersContext } from 'providers/UsersProvider';
 
 const UsersListItem = ({ userData: { average, name, attendance = '0%' }, ...props }) => {
