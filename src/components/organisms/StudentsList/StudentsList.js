@@ -8,23 +8,28 @@ import { useParams } from 'react-router-dom';
 
 const StudentsList = ({ handleOpenStudentDetails }) => {
   const [students, setStudents] = useState([]);
-  const { getStudents } = useStudents();
+  const { getStudentsByGroup } = useStudents();
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
-      const students = await getStudents(id);
+      // if (id === undefined) {
+      //   const students = await getStudentsByGroup();
+      //   setStudents(students);
+      // }
+      const students = await getStudentsByGroup(id);
       setStudents(students);
     })();
-  }, [getStudents, id]);
+  }, [getStudentsByGroup, id]);
 
   return (
     <>
       <Title>Students list</Title>
       <StyledList>
-        {students.map((userData) => (
-          <StudentsListItem onClick={() => handleOpenStudentDetails(userData.id)} key={userData.name} userData={userData} />
-        ))}
+        {students.map((userData) => {
+          // console.log(userData.id);
+          return <UsersListItem key={userData.id} userData={userData} onClick={() => handleOpenStudentDetails(userData.id)} />;
+        })}
       </StyledList>
     </>
   );
