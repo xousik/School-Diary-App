@@ -22,13 +22,20 @@ const StudentsList = ({ handleOpenStudentDetails }) => {
     })();
   }, [getStudentsByGroup, id]);
 
+  const deleteUser = (event, id) => {
+    event.stopPropagation();
+    const filteredUsers = students.filter((user) => user.id !== id);
+    setStudents(filteredUsers);
+  };
+
   return (
     <>
       <Title>Students list</Title>
       <StyledList>
         {students.map((userData) => {
-          // console.log(userData.id);
-          return <UsersListItem key={userData.id} userData={userData} onClick={() => handleOpenStudentDetails(userData.id)} />;
+          return (
+            <UsersListItem deleteUser={deleteUser} key={userData.id} userData={userData} onClick={() => handleOpenStudentDetails(userData.id)} />
+          );
         })}
       </StyledList>
     </>

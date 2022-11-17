@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
@@ -53,13 +53,35 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 const Root = () => {
   const [user, setUser] = useState(null);
 
-  const handleSignIn = ({ login, password }) => {
-    axios
-      .post('/login', {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      (async () => {
+        try {
+          const response = await axios.get('/me', {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, []);
+
+  const handleSignIn = async ({ login, password }) => {
+    try {
+      const response = await axios.post('/login', {
         login,
         password,
-      })
-      .then((res) => console.log(res));
+      });
+      setUser(response.data);
+      localStorage.setItem('token', response.data.token);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

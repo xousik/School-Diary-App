@@ -16,7 +16,9 @@ const NavBar = () => {
       </StyledLink>
       <StyledLink to="/add-user">Add Student</StyledLink>
       <StyledLink to="/settings">Settings</StyledLink>
-      <StyledLink to="/logout">Logout</StyledLink>
+      <StyledLink to="" onClick={() => localStorage.removeItem('token')}>
+        Logout
+      </StyledLink>
     </Wrapper>
   );
 };
