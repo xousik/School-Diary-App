@@ -7,11 +7,17 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 50px;
+  align-items: center;
 `;
 
 export const GroupWrapper = styled(ViewWrapper)`
   margin: 0;
   margin-top: 30px;
+  /* align-self: center; */
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TitleWrapper = styled.div`

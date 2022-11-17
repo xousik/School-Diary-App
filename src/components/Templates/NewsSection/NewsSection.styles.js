@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   border-left: 1px solid ${({ theme }) => theme.colors.darkPurple};
   padding: 50px 25px;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const NewsSectionHeader = styled.h3`
