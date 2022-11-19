@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from 'assets/styles/globalStyle';
-import { theme } from 'assets/styles/theme';
+import React from 'react';
 import { Wrapper } from './Root.styles';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainTemplate from 'components/Templates/MainTemplate/MainTemplate';
 import Dashboard from 'views/DashBoard';
 import { useForm } from 'react-hook-form';
 import FormField from 'components/moleculs/FormField/FormField';
-import axios from 'axios';
+import { useAuth } from 'hooks/useAuth';
 
 const AuthenticatedApp = () => {
   return (
@@ -25,13 +22,19 @@ const AuthenticatedApp = () => {
   );
 };
 
-const UnauthenticatedApp = ({ handleSignIn }) => {
-  const { handleSubmit, register } = useForm();
-  const onSubmit = ({ login, password }) => handleSignIn({ login, password });
+const UnauthenticatedApp = () => {
+  const auth = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  console.log(errors);
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(auth.signIn)}
       style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
       autoComplete="off"
     >
@@ -40,58 +43,26 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
         name="login"
         id="login"
         {...register('login', {
-          required: 'Required',
+          required: true,
         })}
+        // {errors.login && <span>Password is required</span>}
       />
-      <FormField label="password" name="password" id="password" type="password" {...register('password')} />
-
-      <button type="submit">Submit</button>
+      <FormField
+        label="password"
+        name="password"
+        id="password"
+        type="password"
+        {...register('password')}
+        //  {errors.password && <span>Password is required</span>}
+      />
+      <button type="submit">Sign in</button>
     </form>
   );
 };
 
 const Root = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      (async () => {
-        try {
-          const response = await axios.get('/me', {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(response.data);
-        } catch (e) {
-          console.log(e);
-        }
-      })();
-    }
-  }, []);
-
-  const handleSignIn = async ({ login, password }) => {
-    try {
-      const response = await axios.post('/login', {
-        login,
-        password,
-      });
-      setUser(response.data);
-      localStorage.setItem('token', response.data.token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {user ? <AuthenticatedApp /> : <UnauthenticatedApp handleSignIn={handleSignIn} />}
-      </ThemeProvider>
-    </Router>
-  );
+  const auth = useAuth();
+  return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 };
 
 export default Root;
