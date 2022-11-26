@@ -4,7 +4,7 @@ export const Button = styled.button`
   margin-top: 35px;
   padding: ${({ isBig }) => (isBig ? '7px 25px' : '4px 20px')};
   font-size: ${({ isBig, theme: { fontSize } }) => (isBig ? fontSize.xl : fontSize.l)};
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   border: none;
   font-weight: bold;

@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/atoms/Button/Button';
-import { StyledTitle } from 'components/atoms/Title/Title';
+import { Title } from 'components/atoms/Title/Title';
 import FormField from 'components/moleculs/FormField/FormField';
-import { Wrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
+import { ViewWrapper } from 'components/moleculs/ViewWrapper/ViewWrapper';
 
 const Form = ({ handleAddUser, formInput, handleChange }) => {
   return (
     <>
-      <Wrapper as="form" onSubmit={handleAddUser}>
+      <ViewWrapper as="form" onSubmit={handleAddUser}>
         <ul>
-          <StyledTitle>Add new student</StyledTitle>
+          <Title>Add new student</Title>
           <FormField label="Name" id="name" name="name" value={formInput.name} onChange={handleChange} />
           <FormField label="Attendance" id="attendance" name="attendance" value={formInput.attendance} onChange={handleChange} />
           <FormField label="Average" id="average" name="average" value={formInput.average} onChange={handleChange} />
           <Button type="submit">Add</Button>
         </ul>
-      </Wrapper>
+      </ViewWrapper>
     </>
   );
 };

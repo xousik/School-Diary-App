@@ -18,7 +18,7 @@ const NavBar = () => {
         Dashboard
       </StyledLink>
       <StyledLink to="/add-user">Add Student</StyledLink>
-      <StyledLink to="/settings">Settings</StyledLink>
+      <StyledLink to="/notes">Notes</StyledLink>
       <StyledLink to="" onClick={auth.signOut}>
         Logout
       </StyledLink>

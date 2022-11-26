@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
 export const GroupWrapper = styled(ViewWrapper)`
   margin: 0;
   margin-top: 30px;
-  /* align-self: center; */
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;

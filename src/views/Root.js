@@ -3,9 +3,12 @@ import { Wrapper } from './Root.styles';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainTemplate from 'components/Templates/MainTemplate/MainTemplate';
 import Dashboard from 'views/DashBoard';
+import Notes from './Notes';
 import { useForm } from 'react-hook-form';
 import FormField from 'components/moleculs/FormField/FormField';
 import { useAuth } from 'hooks/useAuth';
+import { useError } from 'hooks/useError';
+import ErrorMessage from 'components/moleculs/ErrorMessage/ErrorMessage';
 
 const AuthenticatedApp = () => {
   return (
@@ -16,6 +19,7 @@ const AuthenticatedApp = () => {
           <Route path="/group" element={<Dashboard />}>
             <Route path=":id" element={<Dashboard />} />
           </Route>
+          <Route path="/notes" element={<Notes />} />
         </Routes>
       </Wrapper>
     </MainTemplate>
@@ -24,13 +28,7 @@ const AuthenticatedApp = () => {
 
 const UnauthenticatedApp = () => {
   const auth = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  console.log(errors);
+  const { register, handleSubmit } = useForm();
 
   return (
     <form
@@ -39,7 +37,7 @@ const UnauthenticatedApp = () => {
       autoComplete="off"
     >
       <FormField
-        label="handleSignIn"
+        label="login"
         name="login"
         id="login"
         {...register('login', {
@@ -62,7 +60,14 @@ const UnauthenticatedApp = () => {
 
 const Root = () => {
   const auth = useAuth();
-  return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  const { error } = useError();
+
+  return (
+    <>
+      {error ? <ErrorMessage /> : null}
+      {auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </>
+  );
 };
 
 export default Root;

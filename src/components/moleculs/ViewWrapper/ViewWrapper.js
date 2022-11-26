@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ViewWrapper = styled.div`
-  margin: 25px;
-  background-color: ${({ theme }) => theme.colors.white};
+  margin-top: 25px;
+  background-color: ${({ theme }) => theme.colors.dirtyWhite};
   width: 100%;
   max-width: 600px;
   padding: 40px 50px;
