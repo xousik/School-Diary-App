@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     white: '#FFFFFF',
+    dirtyWhite: '#e3e1e1',
     lightGrey: '#F7F8FA',
     grey: '#C0c7D6',
     darkGrey: '#737C8E',
@@ -12,6 +13,7 @@ export const theme = {
     lightPurple: '#ECEFF7',
   },
   fontSize: {
+    xxxl: '32px',
     xxl: '27px',
     xl: '22px',
     l: '17px',

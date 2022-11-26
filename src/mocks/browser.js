@@ -20,10 +20,10 @@ const seed = () => {
   db.note.create();
   db.note.create();
 
-  // for (let i = 0; i < 15; i++) {
-  //   db.student.create();
-  //   db.event.create();
-  // }
+  for (let i = 0; i < 15; i++) {
+    db.student.create();
+    db.event.create();
+  }
 };
 
 seed();

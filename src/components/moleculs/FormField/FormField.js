@@ -10,15 +10,19 @@ const Wrapper = styled.div`
   align-items: flex-start;
 
   ${Label} {
-    margin: 10px 0;
+    margin: ${({ notes }) => (notes ? '10px 30px' : '10px 0')};
   }
 `;
 
-const FormField = React.forwardRef(({ onChange, value, label, name, id, type = 'text', ...props }, ref) => {
+const FormField = React.forwardRef(({ onChange, value, label, name, id, type = 'text', textarea, ...props }, ref) => {
   return (
-    <Wrapper>
+    <Wrapper notes={props.notes}>
       <Label htmlFor={id}>{label}</Label>
-      <Input ref={ref} name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} checked={value} {...props} />
+      {textarea ? (
+        <textarea label={label} name={name} id={id} value={value} onChange={onChange} {...props} />
+      ) : (
+        <Input ref={ref} name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} checked={value} {...props} />
+      )}
     </Wrapper>
   );
 });
