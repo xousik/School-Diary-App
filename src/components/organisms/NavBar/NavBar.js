@@ -9,9 +9,9 @@ const NavBar = () => {
     <Wrapper>
       <NavLogo>
         <h1>
-          Study
+          School
           <br />
-          Buddy
+          App
         </h1>
       </NavLogo>
       <StyledLink end to="/group">

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NewsSectionHeader, Wrapper, ArticleWrapper, TitleWrapper, ContentWrapper } from './NewsSection.styles';
-import { Button } from 'components/atoms/Button/Button';
 import axios from 'axios';
 
 export const NewsSection = () => {
@@ -54,7 +53,6 @@ export const NewsSection = () => {
               <p>{content}</p>
               {image ? <img src={image.url} alt="" /> : null}
             </ContentWrapper>
-            <Button>click me</Button>
           </ArticleWrapper>
         ))
       ) : (
