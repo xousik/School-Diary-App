@@ -37,6 +37,7 @@ const UnauthenticatedApp = () => {
       autoComplete="off"
     >
       <FormField
+        placeholder="teacher@gmail.com"
         label="login"
         name="login"
         id="login"
@@ -46,6 +47,7 @@ const UnauthenticatedApp = () => {
         // {errors.login && <span>Password is required</span>}
       />
       <FormField
+        placeholder="Test123"
         label="password"
         name="password"
         id="password"
