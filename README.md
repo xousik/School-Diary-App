@@ -18,13 +18,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Learn More
 
-This application is example visualisation of School App where you can log in as teacher or student (not ready yet) and depending on that application has different look and options. 
+This application is an example of visualisation of a School Diary App, where you can log in as teacher or student (this feature is still in the working) and depending on account type, the application has a different display look and options. 
 
-As a teacher you will be able to add and delete students, attribute them with grades that are matched to specific classes (application calculates the average based on that grades) and sign every student to specific group (there is an option to sort users based on that groups).
+As a teacher you will be able to add and delete students, enter their grades to specific classes (the application calculates their average grade based on their grades) and sign each student to specific groups/classes (there is an option to sort students based on those groups).
 
-As a student you'll be able to look into your grades.
+As a student you'll be able to look into your grades and calander.
 
-Application has side section with news wchich change into notes when user go to notes in navbar, where is an option to add new notes.
+The application has a side section with news which change into notes when the user goes to notes in navbar; where is an option to add new notes.
 
 Things left to do:
 
